@@ -45,7 +45,7 @@ $materialsUnreadCount = countUnread($pdo, 'materials');
 
 function getNotificationIcon($notification)
 {
-    if ($notification['tipo'] === 'academic') {
+    if ($notification['type'] === 'academic') {
         switch ($notification['tipo_academico'] ?? '') {
             case 'homework': return '<i class="fa-solid fa-book text-primary"></i>';
             case 'exam': return '<i class="fa-solid fa-graduation-cap text-warning"></i>';
@@ -54,8 +54,8 @@ function getNotificationIcon($notification)
         }
         return '<i class="fa-solid fa-graduation-cap text-danger"></i>';
     }
-    if ($notification['tipo'] === 'calendar') return '<i class="fa-solid fa-calendar-days text-danger"></i>';
-    if ($notification['tipo'] === 'materials') return '<i class="fa-solid fa-book text-danger"></i>';
+    if ($notification['type'] === 'calendar') return '<i class="fa-solid fa-calendar-days text-danger"></i>';
+    if ($notification['type'] === 'materials') return '<i class="fa-solid fa-book text-danger"></i>';
     return '<i class="fa-solid fa-bell text-danger"></i>';
 }
 

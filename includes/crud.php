@@ -1,6 +1,5 @@
 <?php
 
-
 function getNotifications($pdo, $tipo = 'all') {
     $sql = "SELECT * FROM notificacoes";
     if ($tipo !== 'all') {
@@ -15,9 +14,9 @@ function getNotifications($pdo, $tipo = 'all') {
 }
 
 function countUnread($pdo, $tipo = null) {
-    $sql = "SELECT COUNT(*) FROM notificacoes WHERE 'read' = 0";
+    $sql = "SELECT COUNT(*) FROM notificacoes WHERE `read` = 0";
     if ($tipo !== null && $tipo !== 'all') {
-        $sql .= " AND 'type' = ':type'";
+        $sql .= " AND type = :type";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':type', $tipo);
     } else {
@@ -28,12 +27,12 @@ function countUnread($pdo, $tipo = null) {
 }
 
 function markRead($pdo, $id) {
-    $stmt = $pdo->prepare("UPDATE notificacoes SET 'read' = 1 WHERE id = ?");
+    $stmt = $pdo->prepare("UPDATE notificacoes SET `read` = 1 WHERE id = ?");
     return $stmt->execute([$id]);
 }
 
 function markAllRead($pdo) {
-    $stmt = $pdo->prepare("UPDATE notificacoes SET 'read' = 1");
+    $stmt = $pdo->prepare("UPDATE notificacoes SET `read` = 1");
     return $stmt->execute();
 }
 
